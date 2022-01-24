@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: NounExtractor-UNCW-MRL
-Version: 0.0.1
+Version: 0.0.2
 Summary: A configurable nlp pipeline using Azure
 Home-page: https://github.com/UNCWMixedReality/NounExtractor
 Author: Seth Angell
