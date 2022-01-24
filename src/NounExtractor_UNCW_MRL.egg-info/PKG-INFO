@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: NounExtractor-UNCW-MRL
+Version: 0.0.1
+Summary: A configurable nlp pipeline using Azure
+Home-page: https://github.com/UNCWMixedReality/NounExtractor
+Author: Seth Angell
+Author-email: work@sethangell.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/UNCWMixedReality/NounExtractor/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Noun Extractor
+### A cloud service based natural language processing pipeline
+Created by the UNCW Mixed Reality Lab
+
+## Usage
+TBD
+
+
+

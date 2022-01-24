@@ -1,0 +1,6 @@
+version: '3.8'
+
+services:
+  noun_extraction:
+    build: .
+    command: python __main__.py --file tests/test_data/goldilocks.txt --raw-json
