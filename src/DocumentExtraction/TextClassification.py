@@ -49,11 +49,8 @@ class TextClassifier(object):
             working_classified_text.parent_hash = text_hash
 
         try:
-            document = [text]
-            test = self.azure_channel.recognize_entities(documents=document)
-            result = test[0]
-            print(f'{test = }')
-            print(f'{result = }')
+            document = [text] 
+            result = self.azure_channel.recognize_entities(documents=document)[0]
 
             for entity in result.entities:
                 new_datapoint = DataPoint(
@@ -64,9 +61,10 @@ class TextClassifier(object):
                     length=entity.length,
                     offset=entity.offset,
                 )
+                working_classified_text.add_point(new_datapoint)
 
-            working_classified_text.add_point(new_datapoint)
 
+            
         except Exception as err:
             print(
                 f"Encountered exception while classifying the document beginning in {text[:100]}.\
