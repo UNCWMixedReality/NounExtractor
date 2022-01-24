@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/DocumentExtraction/ClassifiedText.py
+src/DocumentExtraction/HashDatabase.py
+src/DocumentExtraction/TextClassification.py
+src/DocumentExtraction/TextExtraction.py
+src/DocumentExtraction/__init__.py
+src/DocumentExtraction/__main__.py
+src/NounExtractor.egg-info/PKG-INFO
+src/NounExtractor.egg-info/SOURCES.txt
+src/NounExtractor.egg-info/dependency_links.txt
+src/NounExtractor.egg-info/requires.txt
+src/NounExtractor.egg-info/top_level.txt
