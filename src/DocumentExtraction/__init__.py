@@ -18,6 +18,13 @@ def write_results_to_output_dir(result_dict: Dict, output_dir: str):
 def classify_zip(
     zip_path: str, depth: int = None, output_dir: str = ".", raw_json=False
 ):
+    """
+    Args: 
+    * zip_path: A filepath pointing at an existing zip file full of documents
+    * depth: [Optional] Specify how many levels down to search for files (1-indexed)
+    * output_dir: a filepath pointing at the directory to save the results in
+    * raw_json: A boolean representing whether output should be returned as a json string
+    """
     TE = TextExtractor()
     TC = TextClassifier(azure=True)
 
@@ -35,6 +42,12 @@ def classify_zip(
 
 
 def classify_single_file(path: str, output_dir: str, raw_json=False):
+    """
+    Args: 
+    * File path: A filepath pointing at a single document
+    * output_dir: a filepath pointing at the directory to save the results in
+    * raw_json: A boolean representing whether output should be returned as a json string
+    """
     TE = TextExtractor()
     TC = TextClassifier(azure=True)
 
@@ -51,6 +64,13 @@ def classify_single_file(path: str, output_dir: str, raw_json=False):
 def classify_directory(
     path: str, depth: int = None, output_dir: str = None, raw_json=False
 ):
+    """
+    Args: 
+    * path: A filepath pointing at a directory full of documents
+    * depth: [Optional] Specify how many levels down to search for files (1-indexed)
+    * output_dir: a filepath pointing at the directory to save the results in
+    * raw_json: A boolean representing whether output should be returned as a json string
+    """
     TE = TextExtractor()
     TC = TextClassifier(azure=True)
 
