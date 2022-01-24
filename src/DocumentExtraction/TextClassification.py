@@ -50,7 +50,10 @@ class TextClassifier(object):
 
         try:
             document = [text]
-            result = self.azure_channel.recognize_entities(documents=document)[0]
+            test = self.azure_channel.recognize_entities(documents=document)
+            result = test[0]
+            print(f'{test = }')
+            print(f'{result = }')
 
             for entity in result.entities:
                 new_datapoint = DataPoint(
