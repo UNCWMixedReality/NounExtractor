@@ -13,12 +13,14 @@ from .TextExtraction import TextExtractor
 
 
 class TextClassifier(object):
-    def __init__(self, db_path: str = "internal_db.db", azure=False):
+    def __init__(self, db_path: str = "internal_db.db", azure=False, db_config=None):
         self.azure_channel = None
         self.aws_channel = None
-        self.con = sqlite3.connect(db_path)
-        self.cache_table_name = "record_db"
-        self.hash_db = HashDatabase(False)
+
+        if db_config is not None:
+            self.hash_db = HashDatabase(True, config_file=db_config)
+        else:
+            self.hash_db = HashDatabase(False)
 
         if azure:
             self._instantiate_azure_connection()

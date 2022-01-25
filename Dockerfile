@@ -26,6 +26,3 @@ ENV DEBUG ${DEBUG}
 
 # Install App
 COPY . .
-
-# make the ingest directory
-RUN mkdir /usr/src/app/ingest

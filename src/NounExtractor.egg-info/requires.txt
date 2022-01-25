@@ -61,3 +61,4 @@ tzlocal==4.1
 virtualenv==20.8.1
 xlrd==1.2.0
 XlsxWriter==3.0.2
+psycopg2-binary

@@ -41,7 +41,7 @@ def classify_zip(
     write_results_to_output_dir(output, output_dir)
 
 
-def classify_single_file(path: str, output_dir: str, raw_json=False):
+def classify_single_file(path: str, output_dir: str, raw_json=False, db_config=None):
     """
     Args: 
     * File path: A filepath pointing at a single document
@@ -49,7 +49,10 @@ def classify_single_file(path: str, output_dir: str, raw_json=False):
     * raw_json: A boolean representing whether output should be returned as a json string
     """
     TE = TextExtractor()
-    TC = TextClassifier(azure=True)
+    if db_config is not None:
+        TC = TextClassifier(azure=True, db_config=db_config)
+    else:
+        TC = TextClassifier(azure=True)
 
     result = TE.extract_text_from_single_file(path)
 

@@ -2,6 +2,6 @@ db: # postgres sample
   vendor: postgres 
   user: postgres
   password: super-sick-password 
-  table: example
-  host: localhost
+  dbname: postgres
+  host: db
   port: 5432
