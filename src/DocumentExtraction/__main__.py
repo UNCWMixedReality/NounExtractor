@@ -73,8 +73,10 @@ def classify_zip(
     results = TE.extract_text_from_a_zip_directory(zip_path, depth)
 
     output = {}
+    print(os.environ.get('AZURE_KEY'))
 
     for val in results.keys():
+        print(val)
         output[val] = TC.classify_single_text_element(results[val])
 
     if raw_json:
