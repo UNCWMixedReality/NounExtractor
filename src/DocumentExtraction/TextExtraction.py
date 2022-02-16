@@ -143,7 +143,7 @@ class TextExtractor(object):
 
         # create a temp directory for peace of mind on deletion later
         #   - Happy to let Errors bubble to top since this will be run as a job
-        os.makedirs("temp_file_location", exists_ok=False)
+        os.makedirs("temp_file_location", exist_ok=False)
 
         working_zip.extractall(path="temp_file_location")
 
