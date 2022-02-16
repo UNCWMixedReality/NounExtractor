@@ -143,7 +143,6 @@ class TextExtractor(object):
 
         # create a temp directory for peace of mind on deletion later
         #   - Happy to let Errors bubble to top since this will be run as a job
-        os.makedirs("temp_file_location", exist_ok=False)
 
         working_zip.extractall(path="temp_file_location")
 
@@ -265,8 +264,8 @@ class TextExtractor(object):
             # This is supposed to handle drive letters, but hasn't been needed
             pass
 
-        elif parent_directory[0] not in ("/", "\\"):
-            parent_directory = "/" + parent_directory
+        # elif parent_directory[0] not in ("/", "\\"):
+        #     parent_directory = "/" + parent_directory
 
         glob_patterns = []
         for ext in self.extensions:

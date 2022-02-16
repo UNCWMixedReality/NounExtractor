@@ -65,18 +65,19 @@ def write_results_to_output_dir(result_dict: Dict, output_dir: str):
 
 # Classification Orchestration
 def classify_zip(
-    zip_path: str, depth: int = None, output_dir: str = ".", raw_json=False
+    zip_path: str, depth: int = None, output_dir: str = ".", raw_json=False, db_config=None
 ):
     TE = TextExtractor()
-    TC = TextClassifier(azure=True)
+    if db_config is not None:
+        TC = TextClassifier(azure=True, db_config=db_config)
+    else:
+        TC = TextClassifier(azure=True)
 
     results = TE.extract_text_from_a_zip_directory(zip_path, depth)
 
     output = {}
-    print(os.environ.get('AZURE_KEY'))
 
     for val in results.keys():
-        print(val)
         output[val] = TC.classify_single_text_element(results[val])
 
     if raw_json:
