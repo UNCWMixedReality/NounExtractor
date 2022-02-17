@@ -43,6 +43,7 @@ class TextClassifier(object):
 
     # Top level private methods
     def _classify_with_azure(self, text: str, text_hash: str = None) -> ClassifiedText:
+        MAX_CHARACTERS_PER_REQUEST = 5120
         if self.azure_channel is None:
             self._instantiate_azure_connection()
 
@@ -51,19 +52,40 @@ class TextClassifier(object):
             working_classified_text.parent_hash = text_hash
 
         try:
-            document = [text] 
-            result = self.azure_channel.recognize_entities(documents=document)[0]
+            index = 0
+            if len(text) > MAX_CHARACTERS_PER_REQUEST:
+                chunked_list = [text[i:i+MAX_CHARACTERS_PER_REQUEST] for i in range(0, len(text), MAX_CHARACTERS_PER_REQUEST)]
 
-            for entity in result.entities:
-                new_datapoint = DataPoint(
-                    noun=entity.text,
-                    category=entity.category,
-                    subcategory=entity.subcategory,
-                    confidence_score=entity.confidence_score,
-                    length=entity.length,
-                    offset=entity.offset,
-                )
-                working_classified_text.add_point(new_datapoint)
+                for text_segment in chunked_list:
+                    document = [text_segment] 
+                    result = self.azure_channel.recognize_entities(documents=document)[0]
+
+                    for entity in result.entities:
+                        new_datapoint = DataPoint(
+                            noun=entity.text,
+                            category=entity.category,
+                            subcategory=entity.subcategory,
+                            confidence_score=entity.confidence_score,
+                            length=entity.length + (MAX_CHARACTERS_PER_REQUEST * index),
+                            offset=entity.offset  + (MAX_CHARACTERS_PER_REQUEST * index),
+                        )
+                        working_classified_text.add_point(new_datapoint)
+
+                    index += 1
+            else:
+                document = [text] 
+                result = self.azure_channel.recognize_entities(documents=document)[0]
+
+                for entity in result.entities:
+                    new_datapoint = DataPoint(
+                        noun=entity.text,
+                        category=entity.category,
+                        subcategory=entity.subcategory,
+                        confidence_score=entity.confidence_score,
+                        length=entity.length,
+                        offset=entity.offset,
+                    )
+                    working_classified_text.add_point(new_datapoint)
 
 
             
