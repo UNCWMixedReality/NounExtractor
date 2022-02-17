@@ -86,7 +86,7 @@ def classify_zip(
     write_results_to_output_dir(output, output_dir)
 
 
-def classify_single_file(path: str, output_dir: str, raw_json=False, db_config=None):
+def classify_single_file(path: str, output_dir: str=".", raw_json=False, db_config=None):
     TE = TextExtractor()
     if db_config is not None:
         TC = TextClassifier(azure=True, db_config=db_config)
